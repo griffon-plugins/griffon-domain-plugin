@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ public final class PropertyExpression implements Criterion {
 
     public PropertyExpression(@Nonnull String propertyName, @Nonnull Operator operator, @Nonnull String otherPropertyName) {
         this.propertyName = requireNonBlank(propertyName, "Argument 'propertyName' cannot be blank");
-        this.operator = requireNonNull(operator, "Argument 'operator' cannot be null");
+        this.operator = requireNonNull(operator, "Argument 'operator' must not be null");
         this.otherPropertyName = requireNonBlank(otherPropertyName, "Argument 'otherPropertyName' cannot be blank");
     }
 

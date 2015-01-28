@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public abstract class AbstractPersistentInstanceDynamicMethodInvocation
 
     public AbstractPersistentInstanceDynamicMethodInvocation(@Nonnull GriffonDomainHandler griffonDomainHandler, @Nonnull Pattern pattern) {
         super(pattern);
-        this.griffonDomainHandler = requireNonNull(griffonDomainHandler, "Argument 'griffonDomainHandler' cannot be null");
+        this.griffonDomainHandler = requireNonNull(griffonDomainHandler, "Argument 'griffonDomainHandler' must not be null");
     }
 
     @Nonnull
@@ -59,7 +59,7 @@ public abstract class AbstractPersistentInstanceDynamicMethodInvocation
     @Override
     @SuppressWarnings({"ConstantConditions", "unchecked"})
     public <T extends GriffonDomain> GriffonDomainClass<T> getDomainClassFor(@Nonnull Class<T> clazz) {
-        requireNonNull(clazz, "Argument 'clazz' cannot be null");
+        requireNonNull(clazz, "Argument 'clazz' must not be null");
         GriffonClass griffonClass = griffonDomainHandler.getApplication().getArtifactManager().findGriffonClass(clazz);
         requireState(griffonClass instanceof GriffonDomainClass, "Class " + clazz.getName() + " is not a domain class.");
         return (GriffonDomainClass) griffonClass;

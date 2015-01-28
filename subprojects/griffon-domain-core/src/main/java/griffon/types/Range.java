@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ public abstract class Range<T extends Comparable> implements Iterable<T> {
     private final T to;
 
     public Range(@Nonnull T from, @Nonnull T to) {
-        this.from = requireNonNull(from, "Argument 'from' cannot be null");
-        this.to = requireNonNull(to, "Argument 'to' cannot be null");
+        this.from = requireNonNull(from, "Argument 'from' must not be null");
+        this.to = requireNonNull(to, "Argument 'to' must not be null");
     }
 
     @Nonnull

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public abstract class AbstractValidateable implements Validateable {
 
     @Inject
     public AbstractValidateable(@Nonnull GriffonApplication application) {
-        this.application = requireNonNull(application, "Argument 'application' cannot be null");
+        this.application = requireNonNull(application, "Argument 'application' must not be null");
         this.errors = new DefaultErrors(getClass());
         ConstraintsEvaluator constraintsEvaluator = application.getInjector().getInstance(ConstraintsEvaluator.class);
         constrainedProperties.putAll(constraintsEvaluator.evaluate(getClass()));

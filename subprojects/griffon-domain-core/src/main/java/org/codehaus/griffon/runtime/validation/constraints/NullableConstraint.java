@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import static java.util.Objects.requireNonNull;
 public class NullableConstraint extends AbstractVetoingConstraint {
     public static final String VALIDATION_DSL_NAME = "nullable";
     public static final String DEFAULT_NULL_MESSAGE_CODE = "default.null.message";
-    public static final String DEFAULT_NULL_MESSAGE = "Property [{0}] of class [{1}] cannot be null";
+    public static final String DEFAULT_NULL_MESSAGE = "Property [{0}] of class [{1}] must not be null";
 
     private boolean nullable;
 
@@ -42,7 +42,7 @@ public class NullableConstraint extends AbstractVetoingConstraint {
 
     @Override
     public boolean supports(@Nonnull Class<?> type) {
-        requireNonNull(type, "Argument 'type' cannot be null");
+        requireNonNull(type, "Argument 'type' must not be null");
         return !type.isPrimitive();
     }
 

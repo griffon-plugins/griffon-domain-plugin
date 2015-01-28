@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,11 +35,11 @@ import static java.util.Objects.requireNonNull;
 public abstract class AbstractPersistentStaticMethodInvocation
     extends AbstractStaticMethodInvocation
     implements PersistentMethodInvocation {
-    private static final String ERROR_CLAZZ_NULL = "Argument 'clazz' cannot be null";
+    private static final String ERROR_CLAZZ_NULL = "Argument 'clazz' must not be null";
     private final GriffonDomainHandler griffonDomainHandler;
 
     public AbstractPersistentStaticMethodInvocation(@Nonnull GriffonDomainHandler griffonDomainHandler) {
-        this.griffonDomainHandler = requireNonNull(griffonDomainHandler, "Argument 'griffonDomainHandler' cannot be null");
+        this.griffonDomainHandler = requireNonNull(griffonDomainHandler, "Argument 'griffonDomainHandler' must not be null");
     }
 
     @Nonnull

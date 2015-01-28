@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ public abstract class AbstractExistsPersistentMethod extends AbstractPersistentS
     @Override
     protected final <T extends GriffonDomain> Object invokeInternal(@Nonnull GriffonDomainClass<T> domainClass, @Nonnull String methodName, @Nonnull Object[] arguments) {
         if (arguments.length == 1) {
-            requireNonNull(arguments[0], "Argument 'key' cannot be null");
+            requireNonNull(arguments[0], "Argument 'key' must not be null");
             return exists(domainClass, arguments[0]);
         }
         throw new StaticMethodInvocationException(domainClass.getClazz(), methodName, arguments);

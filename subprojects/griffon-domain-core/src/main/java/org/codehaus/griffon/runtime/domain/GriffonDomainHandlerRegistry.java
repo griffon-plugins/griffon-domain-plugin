@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class GriffonDomainHandlerRegistry {
     private static final Map<Class<?>, GriffonDomainHandler> HANDLERS = new ConcurrentHashMap<>();
 
     public static void init(@Nonnull ArtifactManager artifactManager) {
-        requireNonNull(artifactManager, "Argument 'artifactManager' cannot be null");
+        requireNonNull(artifactManager, "Argument 'artifactManager' must not be null");
         GriffonDomainHandlerRegistry.artifactManager = artifactManager;
     }
 

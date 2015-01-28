@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,14 +34,14 @@ import static java.util.Objects.requireNonNull;
  * @author Andres Almiray
  */
 public final class ConstraintsValidator {
-    private static final String ERROR_VALIDATEABLE_NULL = "Argument 'validateable' cannot be null";
+    private static final String ERROR_VALIDATEABLE_NULL = "Argument 'validateable' must not be null";
 
     private ConstraintsValidator() {
 
     }
 
     public static boolean evaluate(@Nonnull Validateable validateable, @Nonnull List<String> properties) {
-        requireNonNull(properties, "Argument 'properties' cannot be null");
+        requireNonNull(properties, "Argument 'properties' must not be null");
         return evaluate(validateable, properties.toArray(new String[properties.size()]));
     }
 

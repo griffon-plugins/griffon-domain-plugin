@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ public abstract class AbstractGriffonDomainHandler implements GriffonDomainHandl
 
     @Inject
     public AbstractGriffonDomainHandler(@Nonnull GriffonApplication application) {
-        this.application = requireNonNull(application, "Argument 'application' cannot be null");
+        this.application = requireNonNull(application, "Argument 'application' must not be null");
         instanceMethods.putAll(getInstanceMethods());
         staticMethods.putAll(getStaticMethods());
     }
@@ -68,7 +68,7 @@ public abstract class AbstractGriffonDomainHandler implements GriffonDomainHandl
     @SuppressWarnings({"ThrowableResultOfMethodCallIgnored", "ConstantConditions"})
     public final <T extends GriffonDomain> T invokeInstanceMethod(@Nonnull T target, @Nonnull String methodName, Object... args) {
         try {
-            requireNonNull(target, "Argument 'target' cannot be null");
+            requireNonNull(target, "Argument 'target' must not be null");
             requireNonBlank(methodName, ERROR_METHOD_NAME_BLANK);
             requireState(GriffonDomain.class.isAssignableFrom(target.getClass()),
                 "Cannot call " + methodName + "() on non-domain class [" + target.getClass().getName() + "]");
@@ -89,7 +89,7 @@ public abstract class AbstractGriffonDomainHandler implements GriffonDomainHandl
     @SuppressWarnings({"ThrowableResultOfMethodCallIgnored", "ConstantConditions"})
     public final <T extends GriffonDomain> Object invokeStaticMethod(@Nonnull Class<T> clazz, @Nonnull String methodName, Object... args) {
         try {
-            requireNonNull(clazz, "Argument 'class' cannot be null");
+            requireNonNull(clazz, "Argument 'class' must not be null");
             requireNonBlank(methodName, ERROR_METHOD_NAME_BLANK);
             requireState(GriffonDomain.class.isAssignableFrom(clazz),
                 "Cannot call " + methodName + "() on non-domain class [" + clazz.getName() + "]");

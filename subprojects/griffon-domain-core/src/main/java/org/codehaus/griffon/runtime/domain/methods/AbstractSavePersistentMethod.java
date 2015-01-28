@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ public abstract class AbstractSavePersistentMethod extends AbstractPersistentIns
     @Nullable
     @Override
     protected final <T extends GriffonDomain> T invokeInternal(@Nonnull GriffonDomainClass<T> domainClass, @Nonnull T target, @Nonnull String methodName, @Nonnull Object[] arguments) {
-        requireNonNull(target, "Argument 'target' cannot be null");
+        requireNonNull(target, "Argument 'target' must not be null");
 
         LOG.trace("{}.{}()",target.getClass().getName(), METHOD_NAME);
         Map<String, Object> params = validate(domainClass, methodName, target, arguments);

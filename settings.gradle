@@ -2,6 +2,8 @@ include 'subprojects/griffon-domain-core'
 include 'subprojects/griffon-domain-groovy'
 include 'subprojects/griffon-domain-groovy-compile'
 include 'subprojects/griffon-domain-guide'
+include 'subprojects/griffon-scaffolding-core'
+include 'subprojects/griffon-scaffolding-groovy'
 
 rootProject.name = 'griffon-domain-plugin'
 rootProject.children.each { project ->

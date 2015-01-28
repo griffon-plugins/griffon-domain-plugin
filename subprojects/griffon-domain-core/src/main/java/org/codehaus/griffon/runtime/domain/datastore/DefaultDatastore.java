@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,8 +48,8 @@ public class DefaultDatastore implements Datastore {
 
     @Inject
     public DefaultDatastore(@Nonnull GriffonApplication application, @Nonnull String name, @Nonnull CriterionEvaluator criterionEvaluator) {
-        this.application = requireNonNull(application, "Argument 'application' cannot be null");
-        this.criterionEvaluator = requireNonNull(criterionEvaluator, "Argument 'criterionEvaluator' cannot be null");
+        this.application = requireNonNull(application, "Argument 'application' must not be null");
+        this.criterionEvaluator = requireNonNull(criterionEvaluator, "Argument 'criterionEvaluator' must not be null");
         this.name = name;
     }
 
@@ -128,7 +128,7 @@ public class DefaultDatastore implements Datastore {
     @Nonnull
     @SuppressWarnings("unchecked")
     public <T extends GriffonDomain> Dataset<T> dataset(@Nonnull GriffonDomainClass<T> domainClass) {
-        requireNonNull(domainClass, "Argument 'domainClass' cannot be null");
+        requireNonNull(domainClass, "Argument 'domainClass' must not be null");
         Dataset dataset = DATASETS.get(domainClass.getName());
         if (dataset == null) {
             dataset = new DefaultDataset(domainClass, criterionEvaluator);

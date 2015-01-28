@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,16 +32,16 @@ import static java.util.Objects.requireNonNull;
 public class DefaultDatastoreHandler implements DatastoreHandler {
     private static final Logger LOG = LoggerFactory.getLogger(DefaultDatastoreHandler.class);
     private static final String ERROR_DATASTORE_BLANK = "Argument 'datastoreName' cannot be blank";
-    private static final String ERROR_DATASTORE_NULL = "Argument 'datastore' cannot be null";
-    private static final String ERROR_CALLBACK_NULL = "Argument 'callback' cannot be null";
+    private static final String ERROR_DATASTORE_NULL = "Argument 'datastore' must not be null";
+    private static final String ERROR_CALLBACK_NULL = "Argument 'callback' must not be null";
 
     private final DatastoreFactory datastoreFactory;
     private final DatastoreStorage datastoreStorage;
 
     @Inject
     public DefaultDatastoreHandler(@Nonnull DatastoreFactory datastoreFactory, @Nonnull DatastoreStorage datastoreStorage) {
-        this.datastoreFactory = requireNonNull(datastoreFactory, "Argument 'datastoreFactory' cannot be null");
-        this.datastoreStorage = requireNonNull(datastoreStorage, "Argument 'datastoreStorage' cannot be null");
+        this.datastoreFactory = requireNonNull(datastoreFactory, "Argument 'datastoreFactory' must not be null");
+        this.datastoreStorage = requireNonNull(datastoreStorage, "Argument 'datastoreStorage' must not be null");
     }
 
     @Nullable

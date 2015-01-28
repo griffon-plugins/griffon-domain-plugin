@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -128,9 +128,9 @@ public class ConstrainedProperty {
      * @param propertyType The property type
      */
     public ConstrainedProperty(@Nonnull Class<?> clazz, @Nonnull String propertyName, @Nonnull Class<?> propertyType) {
-        this.owningClass = requireNonNull(clazz, "Argument 'clazz' cannot be null");
+        this.owningClass = requireNonNull(clazz, "Argument 'clazz' must not be null");
         this.propertyName = requireNonBlank(propertyName, "Argument 'propertyName' cannot be blank");
-        this.propertyType = requireNonNull(propertyType, "Argument 'propertyType' cannot be null");
+        this.propertyType = requireNonNull(propertyType, "Argument 'propertyType' must not be null");
     }
 
     public static void removeConstraint(String name, Class<?> constraintClass) {
@@ -148,14 +148,14 @@ public class ConstrainedProperty {
     }
 
     public static void removeConstraint(String name) {
-        requireNonBlank(name, "Argument [name] cannot be null");
+        requireNonBlank(name, "Argument [name] must not be null");
 
         List<Object> objects = getOrInitializeConstraint(name);
         objects.clear();
     }
 
     public static void registerNewConstraint(String name, Class<?> constraintClass) {
-        requireNonBlank(name, "Argument [name] cannot be null");
+        requireNonBlank(name, "Argument [name] must not be null");
         if (constraintClass == null || !Constraint.class.isAssignableFrom(constraintClass)) {
             throw new IllegalArgumentException("Argument [constraintClass] with value [" + constraintClass +
                 "] is not a valid constraint");
@@ -176,7 +176,7 @@ public class ConstrainedProperty {
 
     public static void registerNewConstraint(String name, ConstraintFactory factory) {
         requireNonBlank(name, ERROR_NAME_BLANK);
-        requireNonNull(factory, "Argument [factory] cannot be null");
+        requireNonNull(factory, "Argument [factory] must not be null");
         List<Object> objects = getOrInitializeConstraint(name);
         objects.add(factory);
     }

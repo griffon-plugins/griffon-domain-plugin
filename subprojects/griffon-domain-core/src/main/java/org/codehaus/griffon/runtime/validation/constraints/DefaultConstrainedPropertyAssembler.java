@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class DefaultConstrainedPropertyAssembler implements ConstrainedPropertyA
 
     @Inject
     public DefaultConstrainedPropertyAssembler(@Nonnull GriffonApplication application) {
-        this.application = requireNonNull(application, "Argument 'application' cannot be null");
+        this.application = requireNonNull(application, "Argument 'application' must not be null");
     }
 
     @Nonnull
@@ -61,13 +61,13 @@ public class DefaultConstrainedPropertyAssembler implements ConstrainedPropertyA
 
     @Override
     public void setTargetClass(@Nonnull Class<?> targetClass) {
-        this.targetClass = requireNonNull(targetClass, "Argument 'targetClass' cannot be null");
+        this.targetClass = requireNonNull(targetClass, "Argument 'targetClass' must not be null");
         classPropertyFetcher = ClassPropertyFetcher.forClass(targetClass);
     }
 
     @Override
     public void assemble(@Nonnull Map<String, List<ConstraintDef>> constraints) {
-        requireNonNull(constraints, "Argument 'constraints' cannot be null");
+        requireNonNull(constraints, "Argument 'constraints' must not be null");
         for (Map.Entry<String, List<ConstraintDef>> entry : constraints.entrySet()) {
             assembleConstraint(entry.getKey(), entry.getValue());
         }

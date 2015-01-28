@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,11 +39,11 @@ import static java.util.Objects.requireNonNull;
  */
 public class DefaultDataset<T extends GriffonDomain> implements Dataset<T> {
     private static final Logger LOG = LoggerFactory.getLogger(DefaultDataset.class);
-    private static final String ERROR_ENTITY_NULL = "Argument 'entity' cannot be null";
-    private static final String ERROR_OPTIONS_NULL = "Argument 'options' cannot be null";
-    private static final String ERROR_EXAMPLE_NULL = "Argument 'example' cannot be null";
-    private static final String ERROR_PARAMS_NULL = "Argument 'params' cannot be null";
-    private static final String ERROR_CRITERION_NULL = "Argument 'criterion' cannot be null";
+    private static final String ERROR_ENTITY_NULL = "Argument 'entity' must not be null";
+    private static final String ERROR_OPTIONS_NULL = "Argument 'options' must not be null";
+    private static final String ERROR_EXAMPLE_NULL = "Argument 'example' must not be null";
+    private static final String ERROR_PARAMS_NULL = "Argument 'params' must not be null";
+    private static final String ERROR_CRITERION_NULL = "Argument 'criterion' must not be null";
 
     private final Map<Object, T> ROWS = Collections.synchronizedSortedMap(new TreeMap<Object, T>());
     private final GriffonDomainClass<T> domainClass;
@@ -52,8 +52,8 @@ public class DefaultDataset<T extends GriffonDomain> implements Dataset<T> {
     private final AtomicLong identitySequence = new AtomicLong(0);
 
     public DefaultDataset(@Nonnull GriffonDomainClass<T> domainClass, @Nonnull CriterionEvaluator criterionEvaluator) {
-        this.domainClass = requireNonNull(domainClass, "Argument 'domainClass' cannot be null");
-        this.criterionEvaluator = requireNonNull(criterionEvaluator, "Argument 'criterionEvaluator' cannot be null");
+        this.domainClass = requireNonNull(domainClass, "Argument 'domainClass' must not be null");
+        this.criterionEvaluator = requireNonNull(criterionEvaluator, "Argument 'criterionEvaluator' must not be null");
         this.name = domainClass.getName();
     }
 

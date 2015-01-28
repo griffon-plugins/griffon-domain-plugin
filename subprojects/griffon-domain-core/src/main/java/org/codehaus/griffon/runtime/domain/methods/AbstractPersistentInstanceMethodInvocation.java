@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public abstract class AbstractPersistentInstanceMethodInvocation
     private final GriffonDomainHandler griffonDomainHandler;
 
     public AbstractPersistentInstanceMethodInvocation(@Nonnull GriffonDomainHandler griffonDomainHandler) {
-        this.griffonDomainHandler = requireNonNull(griffonDomainHandler, "Argument 'griffonDomainHandler' cannot be null");
+        this.griffonDomainHandler = requireNonNull(griffonDomainHandler, "Argument 'griffonDomainHandler' must not be null");
     }
 
     @Nonnull
@@ -57,7 +57,7 @@ public abstract class AbstractPersistentInstanceMethodInvocation
     @Override
     @SuppressWarnings({"ConstantConditions", "unchecked"})
     public <T extends GriffonDomain> GriffonDomainClass<T> getDomainClassFor(@Nonnull Class<T> clazz) {
-        requireNonNull(clazz, "Argument 'clazz' cannot be null");
+        requireNonNull(clazz, "Argument 'clazz' must not be null");
         GriffonClass griffonClass = griffonDomainHandler.getApplication().getArtifactManager().findGriffonClass(clazz);
         requireState(griffonClass instanceof GriffonDomainClass, "Class " + clazz.getName() + " is not a domain class.");
         return (GriffonDomainClass) griffonClass;
@@ -67,7 +67,7 @@ public abstract class AbstractPersistentInstanceMethodInvocation
     @Override
     @SuppressWarnings("unchecked")
     public final <T extends GriffonDomain> T invoke(@Nonnull T target, @Nonnull String methodName, Object... arguments) {
-        requireNonNull(target, "Argument 'target' cannot be null");
+        requireNonNull(target, "Argument 'target' must not be null");
         requireNonBlank(methodName, "Argument 'methodName' cannot be blank");
         return invokeInternal((GriffonDomainClass<T>) getDomainClassFor(target.getClass()), target, methodName, normalizeArgs(arguments));
     }

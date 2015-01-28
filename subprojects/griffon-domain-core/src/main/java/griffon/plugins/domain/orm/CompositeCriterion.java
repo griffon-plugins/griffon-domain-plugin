@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +35,8 @@ public final class CompositeCriterion implements Criterion {
     }
 
     public CompositeCriterion(@Nonnull Operator operator, @Nonnull Criterion... criteria) {
-        requireNonNull(operator, "Argument 'operator' cannot be null");
-        requireNonNull(criteria, "Argument 'criteria' cannot be null");
+        requireNonNull(operator, "Argument 'operator' must not be null");
+        requireNonNull(criteria, "Argument 'criteria' must not be null");
         requireState(criteria.length > 0, "There must be at least one Criterion");
         requireState(operator == Operator.AND || operator == Operator.OR, "Invalid operator '" + operator + "'. Allowed operators are AND, OR.");
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ public class NotEqualConstraint extends AbstractConstraint {
 
     @Override
     public boolean supports(@Nonnull Class<?> type) {
-        requireNonNull(type, "Argument 'type' cannot be null");
+        requireNonNull(type, "Argument 'type' must not be null");
         return true;
     }
 
@@ -47,7 +47,7 @@ public class NotEqualConstraint extends AbstractConstraint {
     public void setParameter(@Nonnull Object constraintParameter) {
         requireNonNull(constraintParameter, "Parameter for constraint [" + VALIDATION_DSL_NAME +
             "] of property [" + constraintPropertyName + "] of class [" +
-            constraintOwningClass + "] cannot be null");
+            constraintOwningClass + "] must not be null");
 
         Class<?> propertyClass = GriffonClassUtils.getPropertyType(constraintOwningClass, constraintPropertyName);
         // TODO: Find an alternative way to do the UrlMapping check!

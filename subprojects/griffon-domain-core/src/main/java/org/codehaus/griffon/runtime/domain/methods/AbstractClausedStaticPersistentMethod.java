@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ public abstract class AbstractClausedStaticPersistentMethod extends AbstractPers
 
     public AbstractClausedStaticPersistentMethod(@Nonnull GriffonDomainHandler griffonDomainHandler, @Nonnull Pattern pattern, @Nonnull String[] operators) {
         super(griffonDomainHandler, pattern);
-        this.operators = requireNonNull(operators, "Argument 'operators' cannot be null");
+        this.operators = requireNonNull(operators, "Argument 'operators' must not be null");
         this.operatorPatterns = new Pattern[this.operators.length];
         for (int i = 0; i < operators.length; i++) {
             this.operatorPatterns[i] = Pattern.compile("(\\w+)(" + this.operators[i] + ")(\\p{Upper})(\\w+)");

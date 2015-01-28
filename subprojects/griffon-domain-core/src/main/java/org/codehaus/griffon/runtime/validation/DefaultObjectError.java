@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ public class DefaultObjectError implements ObjectError {
     }
 
     public DefaultObjectError(@Nonnull String[] codes, Object[] arguments, String defaultMessage) {
-        requireState(codes != null && codes.length > 0, "Argument 'codes' cannot be null nor empty");
+        requireState(codes != null && codes.length > 0, "Argument 'codes' must not be null nor empty");
 
         this.code = codes[codes.length - 1];
         this.codes = copy(codes);

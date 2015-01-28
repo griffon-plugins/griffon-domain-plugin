@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public class DefaultDatastoreFactory extends AbstractObjectFactory<Datastore> im
 
     @Override
     public void destroy(@Nonnull String name, @Nonnull Datastore instance) {
-        requireNonNull(instance, "Argument 'instance' cannot be null");
+        requireNonNull(instance, "Argument 'instance' must not be null");
         Map<String, Object> config = narrowConfig(name);
         event("DatastoreDisconnectStart", asList(config, name, instance));
         event("DatastoreDisconnectEnd", asList(name, config));
