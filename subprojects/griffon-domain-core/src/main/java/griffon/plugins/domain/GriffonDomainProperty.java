@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 the original author or authors.
+ * Copyright 2014-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 package griffon.plugins.domain;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import griffon.plugins.validation.Property;
+
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,7 +25,7 @@ import static java.util.Arrays.asList;
 /**
  * @author Andres Almiray
  */
-public interface GriffonDomainProperty {
+public interface GriffonDomainProperty extends Property {
     String IDENTITY = "id";
     String VERSION = "version";
     String TRANSIENTS = "transients";
@@ -41,24 +41,4 @@ public interface GriffonDomainProperty {
         asList(TRANSIENTS, CONSTRAINTS, BELONGS_TO, HAS_MANY, HAS_ONE, ERRORS, PROPERTY_CHANGE_LISTENERS));
     Set<String> STANDARD_DOMAIN_PROPERTIES = new TreeSet<>(asList(IDENTITY, VERSION));
 
-    /**
-     * Returns the name of the property
-     *
-     * @return The property name
-     */
-    @Nonnull
-    String getName();
-
-    /**
-     * Returns the type for the domain class
-     *
-     * @return The property type
-     */
-    @Nonnull
-    Class<?> getType();
-
-    @Nullable
-    Object getValue(@Nonnull Object owner);
-
-    void setValue(@Nonnull Object owner, @Nullable Object value);
 }

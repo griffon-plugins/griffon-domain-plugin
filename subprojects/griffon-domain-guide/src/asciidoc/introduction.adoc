@@ -5,3 +5,5 @@
 The Domain plugin enables lightweight access multiple SQL domains.
 This plugin does NOT provide domain classes nor dynamic finders like GORM does.
 
+Griffon version: {griffon-version}
+

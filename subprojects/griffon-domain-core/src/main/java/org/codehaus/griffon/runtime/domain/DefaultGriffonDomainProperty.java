@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 the original author or authors.
+ * Copyright 2014-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,41 +16,16 @@
 package org.codehaus.griffon.runtime.domain;
 
 import griffon.plugins.domain.GriffonDomainProperty;
+import org.codehaus.griffon.runtime.validation.DefaultProperty;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.beans.PropertyDescriptor;
-
-import static griffon.util.GriffonClassUtils.getPropertyValue;
-import static griffon.util.GriffonClassUtils.setPropertyValue;
-import static java.util.Objects.requireNonNull;
 
 /**
  * @author Andres Almiray
  */
-public class DefaultGriffonDomainProperty implements GriffonDomainProperty {
-    private final PropertyDescriptor propertyDescriptor;
-
-    public DefaultGriffonDomainProperty(@Nonnull PropertyDescriptor propertyDescriptor) {
-        this.propertyDescriptor = requireNonNull(propertyDescriptor, "Argument 'propertyDescriptor' must not be null");
-    }
-
-    @Nonnull
-    public String getName() {
-        return propertyDescriptor.getName();
-    }
-
-    @Nonnull
-    public Class<?> getType() {
-        return propertyDescriptor.getPropertyType();
-    }
-
-    @Nullable
-    public Object getValue(@Nonnull Object owner) {
-        return getPropertyValue(owner, getName());
-    }
-
-    public void setValue(@Nonnull Object owner, @Nullable Object value) {
-        setPropertyValue(owner, propertyDescriptor.getName(), value);
+public class DefaultGriffonDomainProperty extends DefaultProperty implements GriffonDomainProperty {
+    public DefaultGriffonDomainProperty(@Nonnull PropertyDescriptor propertyDescriptor, @Nonnull Class<?> owningType) {
+        super(propertyDescriptor, owningType);
     }
 }
