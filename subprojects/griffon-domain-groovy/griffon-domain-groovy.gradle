@@ -2,6 +2,7 @@ apply plugin: 'groovy'
 apply from: rootProject.file('gradle/code-coverage.gradle')
 
 dependencies {
+    compile "org.codehaus.griffon.plugins:griffon-validation-groovy:${validationVersion}"
     compileOnly "org.codehaus.griffon:griffon-core-compile:${griffonVersion}"
 
     compile project(':griffon-domain-core')

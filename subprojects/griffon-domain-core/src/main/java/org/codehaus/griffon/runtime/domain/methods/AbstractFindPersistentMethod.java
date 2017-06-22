@@ -25,7 +25,6 @@ import griffon.plugins.domain.orm.Criterion;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Collections;
 import java.util.Map;
 
 import static java.util.Objects.requireNonNull;

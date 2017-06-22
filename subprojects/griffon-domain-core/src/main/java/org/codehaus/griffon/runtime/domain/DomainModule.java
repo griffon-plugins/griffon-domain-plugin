@@ -18,6 +18,7 @@ package org.codehaus.griffon.runtime.domain;
 import griffon.core.addon.GriffonAddon;
 import griffon.core.artifact.ArtifactHandler;
 import griffon.core.injection.Module;
+import griffon.inject.DependsOn;
 import griffon.plugins.domain.GriffonDomainHandler;
 import griffon.plugins.domain.datastore.Datastore;
 import griffon.plugins.domain.datastore.DatastoreFactory;
@@ -25,12 +26,12 @@ import griffon.plugins.domain.datastore.DatastoreHandler;
 import griffon.plugins.domain.datastore.DatastoreStorage;
 import griffon.plugins.domain.orm.BeanCriterionEvaluator;
 import griffon.plugins.domain.orm.CriterionEvaluator;
-import griffon.plugins.validation.constraints.ConstrainedPropertyAssembler;
-import griffon.plugins.validation.constraints.ConstraintsEvaluator;
 import org.codehaus.griffon.runtime.core.injection.AbstractModule;
-import org.codehaus.griffon.runtime.domain.datastore.*;
-import org.codehaus.griffon.runtime.validation.constraints.DefaultConstrainedPropertyAssembler;
-import org.codehaus.griffon.runtime.validation.constraints.DefaultConstraintsEvaluator;
+import org.codehaus.griffon.runtime.domain.datastore.DefaultDatastore;
+import org.codehaus.griffon.runtime.domain.datastore.DefaultDatastoreFactory;
+import org.codehaus.griffon.runtime.domain.datastore.DefaultDatastoreHandler;
+import org.codehaus.griffon.runtime.domain.datastore.DefaultDatastoreStorage;
+import org.codehaus.griffon.runtime.domain.datastore.MemoryGriffonDomainHandler;
 import org.kordamp.jipsy.ServiceProviderFor;
 
 import javax.inject.Named;
@@ -41,6 +42,7 @@ import static griffon.util.AnnotationUtils.named;
  * @author Andres Almiray
  */
 @Named("domain")
+@DependsOn("validation")
 @ServiceProviderFor(Module.class)
 public class DomainModule extends AbstractModule {
     @Override
@@ -71,16 +73,9 @@ public class DomainModule extends AbstractModule {
             .to(DomainArtifactHandler.class)
             .asSingleton();
 
-        bind(ConstraintsEvaluator.class)
-            .to(DefaultConstraintsEvaluator.class)
-            .asSingleton();
-
         bind(CriterionEvaluator.class)
             .to(BeanCriterionEvaluator.class)
             .asSingleton();
-
-        bind(ConstrainedPropertyAssembler.class)
-            .to(DefaultConstrainedPropertyAssembler.class);
 
         bind(GriffonAddon.class)
             .to(DomainAddon.class)

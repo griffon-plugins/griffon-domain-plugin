@@ -88,18 +88,6 @@ public class DefaultDatastore implements Datastore {
                 superclass = superclass.getSuperclass();
             }
         }
-
-        /*
-        Set<Class<?>> toRemove = new LinkedHashSet<>();
-        for (Class<?> clazz : classes.keySet()) {
-            if (subclasses.contains(clazz)) {
-                toRemove.add(clazz);
-            }
-        }
-        for (Class<?> clazz : toRemove) {
-            classes.remove(clazz);
-        }
-        */
     }
 
     @Override
@@ -112,7 +100,7 @@ public class DefaultDatastore implements Datastore {
     @Nonnull
     @SuppressWarnings({"ConstantConditions", "unchecked"})
     public <T extends GriffonDomain> Dataset<T> dataset(@Nonnull String name) {
-        requireNonBlank(name, "Argument 'name' cannot be blank");
+        requireNonBlank(name, "Argument 'name' must not be blank");
         Dataset dataset = DATASETS.get(name);
         if (dataset == null) {
             ArtifactManager artifactManager = application.getArtifactManager();

@@ -15,7 +15,6 @@
  */
 package org.codehaus.griffon.runtime.domain.constraints;
 
-import griffon.core.GriffonApplication;
 import griffon.plugins.domain.GriffonDomainClass;
 import griffon.plugins.domain.GriffonDomainClassProperty;
 import griffon.plugins.domain.GriffonDomainProperty;
@@ -26,7 +25,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
-import javax.inject.Inject;
 import java.util.Map;
 
 /**
@@ -34,11 +32,6 @@ import java.util.Map;
  */
 public class DefaultGriffonDomainConstraintsEvaluator extends DefaultConstraintsEvaluator implements GriffonDomainConstraintsEvaluator {
     private static final Logger LOG = LoggerFactory.getLogger(DefaultGriffonDomainConstraintsEvaluator.class);
-
-    @Inject
-    public DefaultGriffonDomainConstraintsEvaluator(@Nonnull GriffonApplication application) {
-        super(application);
-    }
 
     @Nonnull
     @Override

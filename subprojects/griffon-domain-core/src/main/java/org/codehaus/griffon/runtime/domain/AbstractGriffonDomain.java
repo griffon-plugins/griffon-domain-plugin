@@ -19,15 +19,17 @@ import griffon.plugins.domain.GriffonDomain;
 import griffon.plugins.domain.GriffonDomainClass;
 import griffon.plugins.validation.Errors;
 import griffon.plugins.validation.constraints.ConstrainedProperty;
+import griffon.plugins.validation.constraints.ConstraintsEvaluator;
 import griffon.plugins.validation.constraints.ConstraintsValidator;
 import org.codehaus.griffon.runtime.core.artifact.AbstractGriffonArtifact;
 import org.codehaus.griffon.runtime.validation.DefaultErrors;
 
 import javax.annotation.Nonnull;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import static java.util.Arrays.asList;
 
 /**
  * Base implementation of the GriffonDomain interface.
@@ -35,24 +37,29 @@ import static java.util.Arrays.asList;
  * @author Andres Almiray
  */
 public abstract class AbstractGriffonDomain extends AbstractGriffonArtifact implements GriffonDomain {
-    private final Errors errors;
+    @Inject
+    protected ConstraintsValidator constraintsValidator;
 
-    public AbstractGriffonDomain() {
-        this.errors = new DefaultErrors(getClass());
+    @Inject
+    protected ConstraintsEvaluator constraintsEvaluator;
+
+    private final Errors errors = new DefaultErrors(getClass());
+
+    private final Map<String, ConstrainedProperty> constrainedProperties = new LinkedHashMap<>();
+
+    @PostConstruct
+    private void initialize() {
+        if (constraintsEvaluator != null) {
+            constrainedProperties.putAll(constraintsEvaluator.evaluate(getClass()));
+        }
     }
 
     public boolean validate(String... properties) {
-        if (properties == null || properties.length == 0) {
-            beforeValidate();
-        } else {
-            beforeValidate(asList(properties));
-        }
-        return ConstraintsValidator.evaluate(this, properties);
+        return constraintsValidator == null || constraintsValidator.evaluate(this, properties);
     }
 
     public boolean validate(@Nonnull List<String> properties) {
-        beforeValidate(properties);
-        return ConstraintsValidator.evaluate(this, properties);
+        return constraintsValidator == null || constraintsValidator.evaluate(this, properties);
     }
 
     @Nonnull
@@ -62,7 +69,7 @@ public abstract class AbstractGriffonDomain extends AbstractGriffonArtifact impl
 
     @Nonnull
     public Map<String, ConstrainedProperty> constrainedProperties() {
-        return ((GriffonDomainClass) getGriffonClass()).getConstrainedProperties();
+        return constrainedProperties;
     }
 
     @Nonnull

@@ -19,9 +19,7 @@ import griffon.plugins.domain.GriffonDomain;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Andres Almiray

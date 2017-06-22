@@ -11,6 +11,7 @@ apply from: rootProject.file('gradle/code-coverage.gradle')
 
 dependencies {
     compile "org.codehaus.griffon:griffon-core:${griffon.version}"
+    compile "org.codehaus.griffon.plugins:griffon-validation-core:${validationVersion}"
 
     compile('commons-lang:commons-lang:2.6') {
         exclude group: 'commons-logging', module: 'commons-logging'
